@@ -8,9 +8,10 @@ public class utilidades {
             System.out.println();
         }
     }
-public static void presionarEnter() {
+    public static void presionarEnter() {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("\nPresiona ENTER para continuar...");
+    System.out.print("\nPresiona ENTER para continuar...");
     scanner.nextLine();  // Espera hasta que el usuario presione Enter
    }
+   
 }
