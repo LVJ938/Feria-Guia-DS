@@ -7,14 +7,14 @@ public class Stand {
     private String tamaño;
     private String estado;
     private boolean libre;
-    
+
     //constructor
     public Stand(int numeroStand, String ubicacion, String tamaño, String estado){
         this.numeroStand = numeroStand;
         this.ubicacion = ubicacion;
         this.tamaño = tamaño;
         this.estado = estado;
-        this.libre = true;
+        this.libre = libre;
     }
     
     //metodos getters 
@@ -37,16 +37,7 @@ public class Stand {
       public void setEstado(String estado) {
           this.estado = estado;
       }
-    
-    public boolean isLibre() {
-        return libre;
-    }
-
-   
-
-   
-
- 
+      
     //metodos control de stand
     public void setLibre(boolean libre) {
         this.libre = libre;
@@ -58,5 +49,9 @@ public class Stand {
     public void liberarStand() {
         this.libre = true;
     }
-  
+    
+      public boolean isLibre() {
+        return libre;
+    }
+
 }

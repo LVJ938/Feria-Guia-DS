@@ -7,11 +7,11 @@ public class Empresa {
     private String email;
     private Stand standAsignado;
     
-    public Empresa(String nombre,String sector, String email) {
+    public Empresa(String nombre,String sector, String email, Stand standAsignado) {
         this.nombre = nombre;
         this.sector = sector;
         this.email = email;
-        //this.standAsignado = null;
+        this.standAsignado = standAsignado;
         
     }
     

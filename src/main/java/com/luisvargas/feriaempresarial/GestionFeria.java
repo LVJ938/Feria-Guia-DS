@@ -10,7 +10,7 @@ public class GestionFeria {
     private final List<Stand> stands;
     private final List<Visitante> visitas;
     private final List<Comentario> comentarios;  
-    int controlStand = -1;
+   
     
     //inicializamos las ArrayList 
     public GestionFeria() {
@@ -19,21 +19,29 @@ public class GestionFeria {
         visitas = new ArrayList<>();
         comentarios = new ArrayList<>();  
     }
-    
-    
     //-----------------------------------------
     //metodos Gestion de Empresas
     //------------------------------------------
-    public void agregarEmp(Empresa newEmpresa){
-        controlStand = controlStand+1;
-        empresas.add(newEmpresa);
-        stands.get(controlStand).setEstado("Ocupado");
-        System.out.println("\nEmpresa registrada con exito");
-        System.out.println("------------------------------------------");
-        System.out.println("Estand asignado ");
-        System.out.println("------------------------------------------");
-        System.out.println( stands.get(controlStand).getNumeroStand()+" "+stands.get(controlStand).getUbicacion()+" "+stands.get(controlStand).getTamaño());
-        
+    public void agregarEmp(String nombre,String sector,String email){
+      
+        for(int i = 0; i <= stands.size();i++){
+            String estado = stands.get(i).getTestado();
+            if(estado.equals("Libre")){
+                Empresa newEmpresa = new Empresa(nombre,sector,email,stands.get(i));
+                empresas.add(newEmpresa);
+                stands.get(i).setEstado("Ocupado");
+                System.out.println("\nEmpresa registrada con exito");
+                System.out.println("------------------------------------------");
+                System.out.println("Estand asignado ");
+                System.out.println("------------------------------------------");
+                System.out.println( stands.get(i).getNumeroStand()+" "+stands.get(i).getUbicacion()+" "+stands.get(i).getTamaño());
+                break;
+            }
+            else{
+                System.out.println("\nLo sentimos Stans llenos...Vuelva pronto =)");
+                break;
+            }
+        }
     }
     
     public void editarEmp(int numEmp, String nuevoNombre, String nuevoSector,String nuevoEmail){
@@ -72,18 +80,19 @@ public class GestionFeria {
         System.out.println(" Lista de empresas y Stands");
         System.out.println("-----------------------------------------");
         if(empresas.isEmpty()){
-            System.out.println("\n ...No hay empresas registradas...\n");
+            System.out.println("\n ...No hay empresas registradas...");
             a= false;
         }
         else{
             for (int i = 0; i < empresas.size(); i++) {
             Empresa empresa = empresas.get(i);
-            Stand stand = stands.get(i);
-            System.out.println("------------------" +" Numero "+stand.getNumeroStand()+"---------------------");
+            System.out.println("----------------------------------------------------");
+            System.out.println("------------------" +" Numero "+empresas.get(i).getStandAsignado().getNumeroStand()+"---------------------");
             System.out.println("Empresa: " + empresa.getNombre());
             System.out.println("Sector: " + empresa.getSector());
             System.out.println("Correo: " + empresa.getEmail());
-            System.out.println("Stand: "+ stand.getNumeroStand()+" "+stand.getUbicacion()+" "+stand.getTamaño());
+            System.out.println("Stand: " + empresa.getStandAsignado().getNumeroStand()+" "+ empresa.getStandAsignado().getUbicacion());
+            System.out.println("\n----------------------------------------------------");
             a=true;
             } 
          }
@@ -98,7 +107,7 @@ public class GestionFeria {
         }
         else{
             
-            System.out.println("\nEsta enpresa no se a registrado");
+            System.out.println("\nEsta empresa no se a registrado\n");
             esta = false;
         }
         return (esta);
@@ -129,33 +138,33 @@ public class GestionFeria {
     public void agregarVisita(Visitante newVisita){
         
         visitas.add(newVisita);
-        System.out.println("\nVisitante registrada con exito");
+        System.out.println("\nVisitante registrado con exito");
         System.out.println("------------------------------------------");
         
     }
     
-    public void editarVisita(int numEmp, String nuevoNombre, String nuevoSector,String nuevoEmail){
-        Empresa editEmp = empresas.get(numEmp);
+    public void editarVisita(int nuevoVis,String nuevoNombre, int nuevoId,String nuevoEmail){
+        Visitante editVis = visitas.get(nuevoVis);
         
         if (!nuevoNombre.isEmpty()){
-            editEmp.setNombre(nuevoNombre);
-        }
-        
-        if (!nuevoSector.isEmpty()){
-            editEmp.setSector(nuevoSector);
+            editVis.setNombreV(nuevoNombre);
         }
         
         if (!nuevoEmail.isEmpty()){
-            editEmp.setEmail(nuevoEmail);
+            editVis.setEmailV(nuevoEmail);
         }
-        System.out.println("\n Empresa actualizada con exito."); 
+         String nuevoIdString = Integer.toString(nuevoId);
+         if (nuevoIdString.isEmpty()){
+            editVis.setIdV(nuevoId);
+        }
+        System.out.println("\n Visitante actualizado con exito."); 
     }
     
     public void eliminarVisita(int numDel){
         
         if(numDel >= 0 && numDel < visitas.size()){
             Visitante eliminado = visitas.remove(numDel);
-            System.out.println("Visitantes eliminado: " + eliminado.getNombreVist());
+            System.out.println("Visitantes eliminado: " + eliminado.getNombreV());
         }
         else{
             
@@ -163,25 +172,31 @@ public class GestionFeria {
         }
     }
     
-    public void mostrarVisita(){
+    public boolean mostrarVisita(){
+        boolean b = true;
         System.out.println("\n-------------------------");
         System.out.println(" Lista de Visitantes");
         System.out.println("----------------------------");
         if(visitas.isEmpty()){
             System.out.println("\n ...No hay Visitas registradas...");
+            b = false; 
         }
         else{
+            b= true;
             for (int i = 0; i < visitas.size(); i++) {
             Visitante visita = visitas.get(i);
             System.out.println("------------------" +" Visitante  "+(i+1)+". -------------------");
-            System.out.println("Nombre: " + visita.getNombreVist());
-            System.out.println("Identificacion: " + visita.getIdVist());
-            System.out.println("Correo: " + visita.getEmailVit());
+            System.out.println("Nombre: " + visita.getNombreV());
+            System.out.println("Correo: " + visita.getEmailV());
+            System.out.println("Identificacion: " + visita.getIdV());
             } 
          }  
+        return(b);
     }
-    
-     public  boolean existeVisita(int numVisita){
+    //-----------------------------------------
+    //metodos Exisate
+    //------------------------------------------
+    public  boolean existeVisita(int numVisita){
         boolean esta;
         if(numVisita >= 0 && numVisita< visitas.size()){
             System.out.println("\nVisitante  registrado ");
@@ -189,7 +204,7 @@ public class GestionFeria {
         }
         else{
             
-            System.out.println("\nVisitante no registrado");
+            System.out.println("\nVisitante no registrado\n");
             esta = false;
         }
         return (esta);

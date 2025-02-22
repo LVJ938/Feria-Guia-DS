@@ -2,43 +2,45 @@ package com.luisvargas.feriaempresarial;
 
 public class Visitante {
     
-    private String nombreVist;
-    private int idVist;
-    private String emailVist;
+    private String nombreV;
+    private int idV;
+    private String emailV;
     
-    public Visitante (String nombreVist, int idVist, String emailVist){
-        this.nombreVist = nombreVist;
-        this.idVist = idVist;
-        this.emailVist = emailVist;
+    public Visitante (String nombreVis, String emailVis, int idVis){
+        this. nombreV= nombreVis;
+        this.idV = idVis;
+        this.emailV = emailVis;
     }
     
     //mrtodos getter y setters
 
-    public String getNombreVist() {
-        return nombreVist;
+    public void setNombreV(String nombreV) {
+        this.nombreV = nombreV;
     }
 
-    public int getIdVist() {
-        return idVist;
+    public void setIdV(int idV) {
+        this.idV = idV;
     }
 
-    public String getEmailVit() {
-        return emailVist;
+    public void setEmailV(String emailV) {
+        this.emailV = emailV;
     }
 
-    public void setNombreVist(String nombreVist) {
-        this.nombreVist = nombreVist;
+    public String getNombreV() {
+        return nombreV;
     }
 
-    public void setIdVist(int idVist) {
-        this.idVist = idVist;
+    public int getIdV() {
+        return idV;
     }
 
-    public void setEmailVit(String emailVit) {
-        this.emailVist = emailVit;
+    public String getEmailV() {
+        return emailV;
     }
     
-    // metodos Para administrar
+    
+
+    
     
     
 }
