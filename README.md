@@ -4,6 +4,8 @@ Esta aplicacio en Java simula la gestión de una feria empresarial, donde se pue
 
 #### Caracteristicas 
 - La aplicacion no cuenta con una interfas grafica, la forma de accedo a cada caracteristica sera mendiante un menu por consola. Se conforma por menus y sub menus segun las necesidades, este cuenta con cuatro secciones principales **REGRISTRO DE EMPRESAS, REGISTRO DE VISITAS, REPORTES Y DEJANOS UN COMENTARIO**
+- La clase principal es FeriaEmpresarial, dode se podra apreciar el codigo de gestion del menu y submenu
+- Para el ejemplo se crean 2 stands, pero el progrma puede escalarce segun la necesidad
 
 - A continuacion se muestran los menus y sus submenus
 
