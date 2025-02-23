@@ -19,10 +19,10 @@ public class FeriaEmpresarial {
         // Crear algunos stands----------------------------------------------------------------
         Stand stand1 = new Stand(1, "Pabellon A, Stand 1", "Large","Libre");
         Stand stand2 = new Stand(2, "Pabellon B, Stand 2", "Medium","Libre");
-        Stand stand3 = new Stand(3, "Pabellon C, Stand 3", "Small","Libre");
+        //Stand stand3 = new Stand(3, "Pabellon C, Stand 3", "Small","Libre");
         gestionF.registrarStand(stand1);
         gestionF.registrarStand(stand2);
-        gestionF.registrarStand(stand3);
+       // gestionF.registrarStand(stand3);
         //----------------------------------------------------------------------------------------------
         
         while(true){
@@ -148,8 +148,8 @@ public class FeriaEmpresarial {
                                     String emailVis = inPut.nextLine();
                                     
                                     System.out.print("Identificacion: ");
-                                    int  IDVis = inPut.nextInt();
-                                   
+                                    //int  IDVis = inPut.nextInt();
+                                    String IDVis = inPut.nextLine();
                                     gestionF.agregarVisita(new Visitante(nombreVis,emailVis, IDVis));
                                     utilidades.presionarEnter();
                                     break;
@@ -173,9 +173,10 @@ public class FeriaEmpresarial {
                                                 String emailNew = inPut.nextLine();
                                                 
                                                 System.out.print("Nueva ID : ");
-                                                int IDNew = inPut.nextInt();
+                                                //int IDNew = inPut.nextInt();
+                                                String IDNew = inPut.nextLine();
 
-                                                gestionF.editarVisita(numVis,nombreNew, IDNew, emailNew);
+                                                gestionF.editarVisita(numVis,nombreNew, emailNew,IDNew);
                                                 utilidades.presionarEnter();
                                              }   
                                          }
@@ -185,9 +186,9 @@ public class FeriaEmpresarial {
                                     //Eliminar visita
                                     boolean existeVi2 = gestionF.mostrarVisita(); 
                                     if(existeVi2){
-                                        System.out.print("\nSelecione el Numero de la empresa a eliminar: ");  
+                                        System.out.print("\nSelecione el Visitante a eliminar: ");  
                                         int numDel = inPut.nextInt();
-                                        gestionF.eliminarEmpresa(numDel-1);
+                                        gestionF.eliminarVisita(numDel-1);
                                         utilidades.presionarEnter();
                                     }
                                     break;
@@ -226,9 +227,13 @@ public class FeriaEmpresarial {
                                 break;
                             case 2:
                                 //Mostrar Visitas
+                                gestionF.mostrarVisita();
+                                utilidades.presionarEnter();
                                 break;
                             case 3:
                                 //Mostrar Calificaciones
+                                System.out.println("\nComentarios registrados:");
+                                gestionF.mostrarComentarios();
                                 break;
                             case 0:
                                 //Salir del menu Reportes
@@ -242,6 +247,42 @@ public class FeriaEmpresarial {
                    break;  
                 case 4:
                     //COMENTARIOS
+                    System.out.println("---------------------------------------");
+                    System.out.println("Deja Un comentario");
+                    System.out.println("---------------------------------------");
+                    System.out.print("\nDigite su numero de identificacion: ");
+                    String id = inPut.nextLine();  
+                    
+                    boolean visita = gestionF.comprobarID(id);
+                    if (visita){
+                        
+                        System.out.println("Escoja el Stand al que desea dar un cumentario");
+                        gestionF.mostrarStans();
+                        int standIndex=inPut.nextInt();
+                        Stand standSelect = gestionF.obtenerStand(standIndex - 1);
+                        if (standSelect == null) {
+                        System.out.println("Opción inválida. Comentario cancelado.");
+                        return;
+                        }
+                        
+                        System.out.println("De una calificacion al stand");
+                        int calificacion;
+                        do {
+                            System.out.print("Ingrese una calificación (1-5): ");
+                            calificacion = inPut.nextInt();
+                          }while (calificacion < 1 || calificacion > 5);
+                        inPut.nextLine(); // Limpiar buffer
+                        
+                        System.out.print("Ingrese su comentario: ");
+                        String mensaje = inPut.nextLine();
+                        gestionF.cargarComentario (standSelect,calificacion,mensaje);
+                        System.out.println("¡Comentario agregado con éxito!");
+                    }
+                    else{
+                        System.out.println("Sin registros encontrados");
+                        System.out.println("Realizar registro antes de comentar");
+                     }
+                    utilidades.presionarEnter();
                     
                     break;
                 case 0:

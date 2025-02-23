@@ -3,10 +3,11 @@ package com.luisvargas.feriaempresarial;
 public class Visitante {
     
     private String nombreV;
-    private int idV;
+    private String idV;
+    //private int idV;
     private String emailV;
     
-    public Visitante (String nombreVis, String emailVis, int idVis){
+    public Visitante (String nombreVis, String emailVis, String idVis){
         this. nombreV= nombreVis;
         this.idV = idVis;
         this.emailV = emailVis;
@@ -18,7 +19,7 @@ public class Visitante {
         this.nombreV = nombreV;
     }
 
-    public void setIdV(int idV) {
+    public void setIdV(String idV) {
         this.idV = idV;
     }
 
@@ -30,7 +31,7 @@ public class Visitante {
         return nombreV;
     }
 
-    public int getIdV() {
+    public String getIdV() {
         return idV;
     }
 

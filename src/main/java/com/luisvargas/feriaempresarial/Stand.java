@@ -53,5 +53,8 @@ public class Stand {
       public boolean isLibre() {
         return libre;
     }
-
+@Override
+public String toString() {
+    return "# " + numeroStand+"|"+ubicacion+"|"+tamaño;
+    }   
 }

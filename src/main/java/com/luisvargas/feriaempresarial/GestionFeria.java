@@ -23,24 +23,28 @@ public class GestionFeria {
     //metodos Gestion de Empresas
     //------------------------------------------
     public void agregarEmp(String nombre,String sector,String email){
-      
-        for(int i = 0; i <= stands.size();i++){
-            String estado = stands.get(i).getTestado();
+        int control= 0;
+        while(control < stands.size()){
+            String estado = stands.get(control).getTestado();
             if(estado.equals("Libre")){
-                Empresa newEmpresa = new Empresa(nombre,sector,email,stands.get(i));
+                Empresa newEmpresa = new Empresa(nombre,sector,email,stands.get(control));
                 empresas.add(newEmpresa);
-                stands.get(i).setEstado("Ocupado");
+                stands.get(control).setEstado("Ocupado");
                 System.out.println("\nEmpresa registrada con exito");
                 System.out.println("------------------------------------------");
                 System.out.println("Estand asignado ");
                 System.out.println("------------------------------------------");
-                System.out.println( stands.get(i).getNumeroStand()+" "+stands.get(i).getUbicacion()+" "+stands.get(i).getTamaño());
+                System.out.println( stands.get(control).getNumeroStand()+" "+stands.get(control).getUbicacion()+" "+stands.get(control).getTamaño());
                 break;
             }
             else{
-                System.out.println("\nLo sentimos Stans llenos...Vuelva pronto =)");
-                break;
+                control++;
             }
+            
+        }
+        
+        if(control >= stands.size()){
+        System.out.println("\nTodos los Stands Ocupados");
         }
     }
     
@@ -131,6 +135,13 @@ public class GestionFeria {
         stands.add(satands);  
     }
     
+    public Stand obtenerStand(int standIndex) {
+        if (standIndex>= 0 && standIndex < stands.size()) {
+            return stands.get(standIndex);
+        }
+        return null;
+    }
+    
      //-----------------------------------------
     //metodos Gestion de Visitas
     //------------------------------------------
@@ -143,7 +154,7 @@ public class GestionFeria {
         
     }
     
-    public void editarVisita(int nuevoVis,String nuevoNombre, int nuevoId,String nuevoEmail){
+    public void editarVisita(int nuevoVis,String nuevoNombre, String nuevoEmail, String nuevoId){
         Visitante editVis = visitas.get(nuevoVis);
         
         if (!nuevoNombre.isEmpty()){
@@ -153,8 +164,8 @@ public class GestionFeria {
         if (!nuevoEmail.isEmpty()){
             editVis.setEmailV(nuevoEmail);
         }
-         String nuevoIdString = Integer.toString(nuevoId);
-         if (nuevoIdString.isEmpty()){
+         //String nuevoIdString = Integer.toString(nuevoId);
+         if (!nuevoId.isEmpty()){
             editVis.setIdV(nuevoId);
         }
         System.out.println("\n Visitante actualizado con exito."); 
@@ -193,10 +204,8 @@ public class GestionFeria {
          }  
         return(b);
     }
-    //-----------------------------------------
-    //metodos Exisate
-    //------------------------------------------
-    public  boolean existeVisita(int numVisita){
+    
+     public  boolean existeVisita(int numVisita){
         boolean esta;
         if(numVisita >= 0 && numVisita< visitas.size()){
             System.out.println("\nVisitante  registrado ");
@@ -204,11 +213,35 @@ public class GestionFeria {
         }
         else{
             
-            System.out.println("\nVisitante no registrado\n");
+            System.out.println("\nVisitante no registrado");
             esta = false;
         }
         return (esta);
     }
+    //-----------------------------------------
+    //Gestion comentarios 
+    //------------------------------------------
+   
+    public boolean comprobarID(String id){
+        for(int i = 0; i < visitas.size(); i++){
+           String idCorrecto = visitas.get(i).getIdV();
+           if(idCorrecto.equals(id)){
+               System.out.println("Usuario registrado");   
+               System.out.println(" \nSr/Sra "+ visitas.get(i).getNombreV());
+               return true;
+           }
+        }  
+        return false;
+    }
     
-
+    public void cargarComentario(Stand stand,int calificacion,String comentario){
+        Comentario comm= new Comentario(stand,calificacion,comentario);
+        comentarios.add(comm);
+    }
+    
+     public void mostrarComentarios() {
+        for (Comentario c : comentarios) {
+            System.out.println("\n" + c);
+        }
+    }
 }
