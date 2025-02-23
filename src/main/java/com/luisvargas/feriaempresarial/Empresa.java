@@ -54,6 +54,5 @@ public class Empresa {
     public void setStandAsignado(Stand standAsignado){
         this.standAsignado = standAsignado;
     }
-    
-    
+       
 }

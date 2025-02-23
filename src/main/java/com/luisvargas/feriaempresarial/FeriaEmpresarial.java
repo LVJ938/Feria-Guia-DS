@@ -206,13 +206,14 @@ public class FeriaEmpresarial {
                     break;
                    
                 case 3:
+                     //Consultar stands, visitas y calificaciones
                     do{
                         System.out.println("---------------------------------------");
-                        System.out.println("CONSULTA");
+                        System.out.println("REPORTES");
                         System.out.println("---------------------------------------");
                         System.out.println("\n1. Estado de Stands");
                         System.out.println("2. Mostrar Visitas");
-                        System.out.println("3. Consultar ");
+                        System.out.println("3. Mostrar Calificaciones");
                         System.out.println("0. Salir");
                         System.out.print("\nSeleccione una opcion: ");
                             
