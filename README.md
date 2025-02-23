@@ -1,10 +1,10 @@
 ### Feria Empresarial
 
-Esta aplicacio en Java simula la gestión de una feria empresarial, donde se puedan registrar empresas, stands, y visitantes, además de permitir la interacción entre ellos.
+Esta aplicación en Java simula la gestión de una feria empresarial, donde se puedan registrar empresas, stands, y visitantes, además de permitir la interacción entre ellos.
 
 #### Caracteristicas 
-- La aplicacion no cuenta con una interfas grafica, la forma de accedo a cada caracteristica sera mendiante un menu por consola. Se conforma por menus y sub menus segun las necesidades, este cuenta con cuatro secciones principales **REGRISTRO DE EMPRESAS, REGISTRO DE VISITAS, REPORTES Y DEJANOS UN COMENTARIO**
-- La clase principal es FeriaEmpresarial, dode se podra apreciar el codigo de gestion del menu y submenu
+- La aplicación no cuenta con una interfaz gráfica, la forma de accedo a cada característica será mediante un menú por consola. Se conforma por menús y submenús según las necesidades, este cuenta con cuatro secciones principales **REGRISTRO DE EMPRESAS, REGISTRO DE VISITAS, REPORTES Y DEJANOS UN COMENTARIO**
+- La clase principal es FeriaEmpresarial, donde se podrá apreciar el código de gestión del menú y submenú
 - Para el ejemplo se crean 2 stands, pero el progrma puede escalarce segun la necesidad
 
 - A continuacion se muestran los menus y sus submenus
